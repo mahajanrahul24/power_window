@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1544165336 source:c:\users\rahulm99\code block\power_window\main.c
+	"main.h"
+	"up.h"
+
+1544172283 c:\users\rahulm99\code block\power_window\main.h
+	<stdio.h>
+	<stdbool.h>
+	<stdint.h>
+	<stdlib.h>
+
+1544164200 c:\users\rahulm99\code block\power_window\up.h
+	"main.h"
+
+1544165187 source:c:\users\rahulm99\code block\power_window\up.c
+	"up.h"
+
+1544172048 source:c:\users\rahulm99\code block\power_window\down.c
+	"down.h"
+
+1544171994 c:\users\rahulm99\code block\power_window\down.h
+	"main.h"
+
