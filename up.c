@@ -1,30 +1,37 @@
 #include "up.h"
 
-uint16_t MOTOR_SPEED;
+uint16_t MOTOR_SPEED = 0;
 
-int windowUp(uint8_t IGN, uint8_t DOOR_STATE, uint8_t MOVING_UP_SW)
+int Power_Window_UP_Mode(uint8_t IGNITION, uint8_t DOOR_STATUS, uint8_t MOVING_UP_SWITCH)
 {
-    if(MOTOR_SPEED >= 600)
-        WINDOW_FULLY_CLOSED = true;
-    else
-        WINDOW_FULLY_CLOSED = false;
-
-    if(!WINDOW_FULLY_CLOSED)
-    {
-        if (MOVING_UP_SW)
+    uint8_t local_MOVING_UP_SWITCH = MOVING_UP_SWITCH;
+    if (MOTOR_SPEED == 0)
         {
-            if((IGN==1) || (DOOR_STATE==1))
-            {
-                MOTOR_SPEED += 4;
-                POWER_WINDOW_STATUS=1;
-            }
-            else
-                WINDOW_FULLY_CLOSED = true;
+            WINDOW_FULLY_OPEN = true;
+        }
+        else
+        {
+            WINDOW_FULLY_OPEN = false;
+        }
+    if (local_MOVING_UP_SWITCH == 1)
+    {
+        if ((DOOR_STATUS == 1) || (IGNITION == 1 ))
+        {
+            POWER_WINDOW_STATUS = 1;
+            MOTOR_SPEED +=4;
+            return POWER_WINDOW_STATUS;
+        }
+
+        else if ((DOOR_STATUS == 0) && (IGNITION == 0 ))
+        {
+            POWER_WINDOW_STATUS = 0;
+            return POWER_WINDOW_STATUS;
         }
     }
-    else
-        POWER_WINDOW_STATUS=0;
 
-return POWER_WINDOW_STATUS;
+    if (MOTOR_SPEED >= 600);
+    {
+        WINDOW_FULLY_CLOSED = true;
+        
+    }
 }
-
