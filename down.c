@@ -1,27 +1,39 @@
 #include "down.h"
 
-int windowDown(uint8_t IGN, uint8_t DOOR_STATE, uint8_t MOVING_DOWN_SW)
-{
-    if(MOTOR_SPEED == 0)
-        WINDOW_FULLY_OPEN = true;
-    else
-        WINDOW_FULLY_OPEN = false;
+uint16_t MOTOR_SPEED = 600;
 
-    if(!WINDOW_FULLY_OPEN)
-    {
-        if (MOVING_DOWN_SW)
+int windowDown(uint8_t IGNITION, uint8_t DOOR_STATUS, uint8_t MOVING_DOWN_SWITCH)
+{
+
+    if (MOTOR_SPEED == 600)
         {
-            if((IGN==1) || (DOOR_STATE==1))
-            {
-                MOTOR_SPEED -= 4;
-                POWER_WINDOW_STATUS=1;
-            }
-            else
-                WINDOW_FULLY_OPEN = true;
+            WINDOW_FULLY_CLOSED = true;
+        }
+        else
+        {
+            WINDOW_FULLY_CLOSED = false;
+        }
+    if (MOVING_DOWN_SWITCH == 1)
+    {
+        if ((DOOR_STATUS == 1) || (IGNITION == 1 ))
+        {
+
+            POWER_WINDOW_STATUS = 2;
+            MOTOR_SPEED -=4;
+            return POWER_WINDOW_STATUS;
+
+        }
+
+        else if((DOOR_STATUS == 0)&& (IGNITION == 0))
+        {
+            POWER_WINDOW_STATUS = 0;
+            return POWER_WINDOW_STATUS;
         }
     }
-    else
-        POWER_WINDOW_STATUS=0;
 
-return POWER_WINDOW_STATUS;
+    if (MOTOR_SPEED <= 0);
+    {
+        WINDOW_FULLY_OPEN = true;
+
+    }
 }
