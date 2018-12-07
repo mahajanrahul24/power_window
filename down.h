@@ -1,4 +1,4 @@
 #include "main.h"
 
-int windowDown(uint8_t IGN, uint8_t DOOR_STATE, uint8_t MOVING_DOWN_SW);
+int windowDown(uint8_t IGNITION, uint8_t DOOR_STATUS, uint8_t MOVING_DOWN_SWITCH);
 
