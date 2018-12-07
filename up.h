@@ -1,3 +1,2 @@
 #include "main.h"
-int windowUp(uint8_t IGN, uint8_t DOOR_STATE, uint8_t MOVING_UP_SW);
-
+int Power_Window_UP_Mode(uint8_t IGNITION, uint8_t DOOR_STATUS, uint8_t MOVING_DOWN_SWITCH);
